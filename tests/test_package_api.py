@@ -39,7 +39,8 @@ def test_python_m_entrypoint() -> None:
         text=True,
     )
     payload = json.loads(completed.stdout)
-    assert payload["workflow"] == "industrial_anomaly_screening"
+    assert payload["workflow"] == "industrial_anomaly_screening_smoke_test"
+    assert payload["demo_mode"] == "untrained_flow_with_split_calibration"
     assert payload["triage_sample_shape"] == [4, 6]
 
 

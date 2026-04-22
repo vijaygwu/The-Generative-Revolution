@@ -1,12 +1,20 @@
 {
-  "anomaly_flag_rate": 0.56640625,
-  "anomaly_mean_log_prob": -14.421979904174805,
-  "reference_flag_rate": 0.05078125,
-  "reference_mean_log_prob": -8.830583572387695,
+  "anomaly_flag_rate": 0.62109375,
+  "anomaly_mean_log_prob": -14.466660499572754,
+  "calibration_mean_log_prob": -8.830583572387695,
+  "demo_mode": "untrained_flow_with_split_calibration",
+  "reference_flag_rate": 0.04296875,
+  "reference_mean_log_prob": -8.888169288635254,
+  "split_sizes": {
+    "anomaly": 256,
+    "calibration": 256,
+    "reference": 256
+  },
   "threshold": -12.985152244567871,
+  "threshold_source": "calibration_batch_5th_percentile",
   "triage_sample_shape": [
     4,
     6
   ],
-  "workflow": "industrial_anomaly_screening"
+  "workflow": "industrial_anomaly_screening_smoke_test"
 }

@@ -43,12 +43,17 @@ to inspect the raw implementation.
   null-conditioned diffusion loss pass and classifier-free-guided DDIM sampling.
 
 - `examples/anomaly_screening_flow.py`
-  A compact industrial anomaly-screening workflow built around flow
-  log-likelihood scores and threshold-based triage.
+  An untrained industrial anomaly-screening smoke test that keeps calibration
+  separate from the evaluated reference and anomaly batches while exercising
+  flow log-likelihood scores and threshold-based triage.
 
 - `examples/multimodal_creative_assistant.py`
   A synthetic multimodal creative-assistant loop that combines retrieval,
   discrete latents, guidance, and evaluation.
+
+The anomaly-screening example demonstrates score plumbing and thresholding
+mechanics only. It intentionally skips model fitting, so treat it as a
+split-aware smoke test rather than a trained detector.
 
 ## Recommended Reading Order
 

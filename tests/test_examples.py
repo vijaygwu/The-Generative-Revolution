@@ -29,7 +29,10 @@ def test_product_imaging_demo() -> None:
 
 def test_anomaly_screening_demo() -> None:
     result = run_flow_demo(seed=0)
-    assert result["workflow"] == "industrial_anomaly_screening"
+    assert result["workflow"] == "industrial_anomaly_screening_smoke_test"
+    assert result["demo_mode"] == "untrained_flow_with_split_calibration"
+    assert result["threshold_source"] == "calibration_batch_5th_percentile"
+    assert result["split_sizes"] == {"calibration": 256, "reference": 256, "anomaly": 256}
     assert result["anomaly_mean_log_prob"] < result["reference_mean_log_prob"]
     assert 0.0 <= result["reference_flag_rate"] <= 1.0
     assert 0.0 <= result["anomaly_flag_rate"] <= 1.0

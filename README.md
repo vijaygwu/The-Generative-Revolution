@@ -58,12 +58,17 @@ The companion now includes lightweight product-style demos in `examples/`:
   An untrained retail product-imaging smoke test for Chapter 24 with a single
   null-conditioned loss pass and classifier-free-guided DDIM sampling
 - `examples/anomaly_screening_flow.py`
-  A small anomaly-screening loop for Chapter 23
+  An untrained anomaly-screening smoke test for Chapter 23 that keeps
+  calibration separate from the evaluated reference and anomaly batches
 - `examples/multimodal_creative_assistant.py`
   A retrieval-guidance-evaluation workflow for Chapter 25
 
 These scripts use synthetic inputs so they run without external datasets while
 still exercising the maintained reference implementations.
+
+The anomaly-screening example is intentionally a smoke test: it demonstrates
+score computation and split-aware thresholding, but it does not fit the flow on
+real nominal data.
 
 The saved reference outputs for those demos live under `artifacts/expected/`,
 and the corresponding exploratory notebooks live under `notebooks/`.
