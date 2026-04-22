@@ -12,6 +12,7 @@ The-Generative-Revolution/
 ├── artifacts/expected/     # Canonical demo outputs for quick comparison
 ├── examples/               # Product-style runnable demos built on the modules
 ├── notebooks/              # Lightweight exploratory companions for key workflows
+├── operator_assets/        # Printable field-manual templates from the book
 ├── src/                    # Maintained runnable reference implementations
 │   ├── vae.py              # Variational autoencoder examples
 │   ├── gan.py              # GAN baseline plus WGAN-GP helper components
@@ -74,6 +75,12 @@ The saved reference outputs for those demos live under `artifacts/expected/`,
 and the corresponding exploratory notebooks live under `notebooks/`.
 The notebooks are intentionally committed with cleared outputs so the repo
 stays diff-friendly.
+
+If you want the operator layer from the book rather than another code path,
+open `operator_assets/`. That folder mirrors the most reusable practitioner
+tools from Book 3: the G-CLEDO scorecard, benchmark brief, failure triage
+sheet, evaluation packs, ship checklist, economics sheet, and a reusable
+modelopsy template.
 
 For a package-style workflow, you can also run:
 

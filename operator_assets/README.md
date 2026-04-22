@@ -1,0 +1,35 @@
+# Operator Assets
+
+These assets turn the companion from a runnable code repo into a small working
+kit for practitioners.
+
+Use them with the book, not instead of the book:
+
+- `gcledo_scorecard.md`
+  Reusable `Goal / Control / Latency / Data / Eval / Ops` model-family sheet
+- `benchmark_brief_retail_imaging.md`
+  The recurring benchmark contract used across Book 3
+- `failure_triage_sheet.md`
+  Symptom-to-intervention worksheet
+- `review_rubric.md`
+  General human-review rubric for product-facing evaluation
+- `eval_pack_product_imaging.md`
+  Minimum viable evaluation pack for prompt-conditioned imaging
+- `eval_pack_anomaly_screening.md`
+  Minimum viable evaluation pack for anomaly workflows
+- `eval_pack_multimodal_assistant.md`
+  Minimum viable evaluation pack for composed assistants
+- `ship_no_ship_checklist.md`
+  Release gate checklist
+- `economics_tradeoff_sheet.md`
+  Qualitative economics worksheet for family comparisons
+- `modelopsy_template.md`
+  Short postmortem template for documenting family switches
+
+Recommended order:
+
+1. Fill out `gcledo_scorecard.md`
+2. Write the workflow in `benchmark_brief_retail_imaging.md` or adapt it
+3. Use the relevant `eval_pack_*.md`
+4. Run `ship_no_ship_checklist.md`
+5. If the model family fails, document the switch with `modelopsy_template.md`
