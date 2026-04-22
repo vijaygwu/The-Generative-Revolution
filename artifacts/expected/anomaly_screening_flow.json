@@ -1,0 +1,12 @@
+{
+  "anomaly_flag_rate": 0.56640625,
+  "anomaly_mean_log_prob": -14.421979904174805,
+  "reference_flag_rate": 0.05078125,
+  "reference_mean_log_prob": -8.830583572387695,
+  "threshold": -12.985152244567871,
+  "triage_sample_shape": [
+    4,
+    6
+  ],
+  "workflow": "industrial_anomaly_screening"
+}

@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "the-generative-revolution"
+version = "0.1.0"
+description = "Companion code for The Generative Revolution"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Dr. Vijay Raghavan" }
+]
+dependencies = [
+  "numpy>=1.24.0",
+  "scipy>=1.10.0",
+  "torch>=2.0.0"
+]
+keywords = [
+  "generative models",
+  "vae",
+  "gan",
+  "normalizing flows",
+  "diffusion models",
+  "multimodal ai"
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+[project.optional-dependencies]
+dev = [
+  "matplotlib>=3.7.0",
+  "jupyter>=1.0.0",
+  "pytest>=7.4.0"
+]
+
+[project.scripts]
+tgr-demo = "the_generative_revolution.cli:main"
+tgr-product-imaging = "the_generative_revolution.cli:product_imaging_main"
+tgr-anomaly-screening = "the_generative_revolution.cli:anomaly_screening_main"
+tgr-creative-assistant = "the_generative_revolution.cli:creative_assistant_main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+  "src",
+  "src.*",
+  "examples",
+  "examples.*",
+  "the_generative_revolution",
+  "the_generative_revolution.*"
+]

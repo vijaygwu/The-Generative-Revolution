@@ -1,0 +1,8 @@
+{
+  "fid_proxy": 0.006969107578712878,
+  "guidance_shift_norm": 18.938886642456055,
+  "retrieval_margin": 0.19816553592681885,
+  "retrieved_asset_index": 3,
+  "unique_codes_used": 16,
+  "workflow": "multimodal_creative_assistant"
+}

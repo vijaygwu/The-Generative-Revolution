@@ -1,0 +1,65 @@
+name: Companion CI
+
+on:
+  push:
+    paths:
+      - ".github/workflows/companion-ci.yml"
+      - "pyproject.toml"
+      - "requirements.txt"
+      - "README.md"
+      - "QUICKSTART.md"
+      - "src/**"
+      - "examples/**"
+      - "tests/**"
+      - "artifacts/expected/**"
+      - "notebooks/**"
+  pull_request:
+    paths:
+      - ".github/workflows/companion-ci.yml"
+      - "pyproject.toml"
+      - "requirements.txt"
+      - "README.md"
+      - "QUICKSTART.md"
+      - "src/**"
+      - "examples/**"
+      - "tests/**"
+      - "artifacts/expected/**"
+      - "notebooks/**"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install package and dev dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run companion runtime and example tests
+        run: |
+          python tests/validate_runtime_stack.py
+          python tests/test_examples.py
+          python tests/test_expected_artifacts.py
+          python tests/test_package_api.py
+          python tests/test_notebook_hygiene.py
+
+      - name: Run companion model tests
+        run: |
+          python tests/test_advanced_generative.py
+          python tests/test_metrics.py
+          python tests/test_vae.py
+          python tests/test_gan.py
+          python tests/test_flows.py
+          python tests/test_diffusion.py

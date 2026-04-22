@@ -1,0 +1,21 @@
+{
+  "conditioning_dropout_rate": 0.25,
+  "conditioning_hook_gap": 0.07611972838640213,
+  "guidance_hook_stats": {
+    "max": 1.1198055744171143,
+    "mean": -0.034632354974746704,
+    "min": -1.871789813041687,
+    "std": 0.42644593119621277
+  },
+  "guidance_scale": 2.0,
+  "sample_stats": {
+    "max": 4.1295390129089355,
+    "mean": 0.0208409633487463,
+    "min": -4.167174339294434,
+    "std": 1.0668869018554688
+  },
+  "sampler_mode": "classifier_free_guided_ddim",
+  "sampler_steps": 6,
+  "train_loss": 1.1595045328140259,
+  "workflow": "retail_product_imaging_smoke_test"
+}
