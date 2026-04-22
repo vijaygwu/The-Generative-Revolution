@@ -13,6 +13,8 @@ Use them with the book, not instead of the book:
   Symptom-to-intervention worksheet
 - `review_rubric.md`
   General human-review rubric for product-facing evaluation
+- `design_clinics/`
+  Four short product memos that mirror the book's generative design clinics
 - `eval_pack_product_imaging.md`
   Minimum viable evaluation pack for prompt-conditioned imaging
 - `eval_pack_anomaly_screening.md`
@@ -31,5 +33,6 @@ Recommended order:
 1. Fill out `gcledo_scorecard.md`
 2. Write the workflow in `benchmark_brief_retail_imaging.md` or adapt it
 3. Use the relevant `eval_pack_*.md`
-4. Run `ship_no_ship_checklist.md`
-5. If the model family fails, document the switch with `modelopsy_template.md`
+4. Adapt the nearest memo in `design_clinics/`
+5. Run `ship_no_ship_checklist.md`
+6. If the model family fails, document the switch with `modelopsy_template.md`

@@ -79,8 +79,8 @@ stays diff-friendly.
 If you want the operator layer from the book rather than another code path,
 open `operator_assets/`. That folder mirrors the most reusable practitioner
 tools from Book 3: the G-CLEDO scorecard, benchmark brief, failure triage
-sheet, evaluation packs, ship checklist, economics sheet, and a reusable
-modelopsy template.
+sheet, design clinics, evaluation packs, ship checklist, economics sheet, and
+a reusable modelopsy template.
 
 For a package-style workflow, you can also run:
 

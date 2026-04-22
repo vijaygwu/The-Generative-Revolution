@@ -40,6 +40,7 @@ to inspect the raw implementation.
    that match the book's practitioner layer. Start with:
    - `operator_assets/gcledo_scorecard.md`
    - `operator_assets/benchmark_brief_retail_imaging.md`
+   - `operator_assets/design_clinics/retail_product_imaging.md`
    - `operator_assets/ship_no_ship_checklist.md`
 
 ## What Each Example Shows
@@ -87,4 +88,5 @@ python tests/test_diffusion.py
 - Open the corresponding `src/*.py` files to see the maintained reference
   implementations behind each demo.
 - Open `operator_assets/` if you want the field-manual templates rather than
-  more implementation detail.
+  more implementation detail. The `design_clinics/` subfolder is the fastest
+  path if you want a concrete product memo rather than a blank worksheet.
