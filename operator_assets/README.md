@@ -3,6 +3,11 @@
 These assets turn the companion from a runnable code repo into a small working
 kit for practitioners.
 
+Current scope note: this folder ships the reusable field-manual layer plus the
+Chapter 23-25 workflow-specific clinics and evaluation packs. Chapter 26's
+voice evaluation bundle and design clinic remain book-only in this release, so
+there is no voice-specific eval pack or voice clinic in `operator_assets/` yet.
+
 Use them with the book, not instead of the book:
 
 - `gcledo_scorecard.md`
@@ -14,7 +19,8 @@ Use them with the book, not instead of the book:
 - `review_rubric.md`
   General human-review rubric for product-facing evaluation
 - `design_clinics/`
-  Four short product memos that mirror the book's generative design clinics
+  Selected short product memos from the book's practitioner layer; current repo
+  clinics stop before Chapter 26's voice workflow
 - `eval_pack_product_imaging.md`
   Minimum viable evaluation pack for prompt-conditioned imaging
 - `eval_pack_anomaly_screening.md`

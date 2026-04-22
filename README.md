@@ -37,6 +37,7 @@ The-Generative-Revolution/
 | 23 | Normalizing Flows | `src/flows.py` |
 | 24 | Diffusion Models | `src/diffusion.py` |
 | 25 | Advanced Generative Models | `src/advanced_generative.py`, `src/metrics.py`, `src/utils.py` |
+| 26 | Audio and Voice Models | Book-only chapter in this release; no mirrored companion module or operator-asset pack yet |
 
 ## Quick Start
 
@@ -78,9 +79,11 @@ stays diff-friendly.
 
 If you want the operator layer from the book rather than another code path,
 open `operator_assets/`. That folder mirrors the most reusable practitioner
-tools from Book 3: the G-CLEDO scorecard, benchmark brief, failure triage
-sheet, design clinics, evaluation packs, ship checklist, economics sheet, and
-a reusable modelopsy template.
+tools from Book 3 through Chapter 25: the G-CLEDO scorecard, benchmark brief,
+failure triage sheet, design clinics, evaluation packs, ship checklist,
+economics sheet, and a reusable modelopsy template. Chapter 26's voice
+evaluation bundle and design clinic currently remain book-only; this companion
+release does not yet ship a voice eval pack or voice clinic.
 
 For a package-style workflow, you can also run:
 
