@@ -109,6 +109,18 @@ def test_ddim_timestep_schedule_includes_endpoints() -> None:
     assert single_step_timesteps == [9, 0]
 
 
+def test_ddim_reuses_fixed_initial_noise_deterministically() -> None:
+    torch.manual_seed(0)
+    model = SimpleUNet(in_ch=3, out_ch=3, ch=8, time_dim=32)
+    ddpm = DDPM(model, T=10, device="cpu")
+    initial_noise = torch.randn(2, 3, 32, 32)
+
+    first = ddpm.sample_ddim((2, 3, 32, 32), steps=5, initial_noise=initial_noise)
+    second = ddpm.sample_ddim((2, 3, 32, 32), steps=5, initial_noise=initial_noise)
+
+    assert torch.equal(first, second)
+
+
 def test_train_diffusion_accepts_unlabeled_and_labeled_batches() -> None:
     torch.manual_seed(0)
     model = SimpleUNet(in_ch=1, out_ch=1, ch=8, time_dim=32)
@@ -130,6 +142,7 @@ def main() -> None:
     test_simple_unet_small_channel_count()
     test_ddpm_core_paths()
     test_ddim_timestep_schedule_includes_endpoints()
+    test_ddim_reuses_fixed_initial_noise_deterministically()
     test_train_diffusion_accepts_unlabeled_and_labeled_batches()
     print("All diffusion tests passed.")
 

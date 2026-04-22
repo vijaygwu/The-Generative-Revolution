@@ -12,9 +12,13 @@ _repo_root = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
-from examples.anomaly_screening_flow import run_demo as run_flow_demo
-from examples.multimodal_creative_assistant import run_demo as run_assistant_demo
-from examples.product_imaging_diffusion import run_demo as run_product_demo
+from the_generative_revolution.examples.anomaly_screening_flow import run_demo as run_flow_demo
+from the_generative_revolution.examples.multimodal_creative_assistant import (
+    run_demo as run_assistant_demo,
+)
+from the_generative_revolution.examples.product_imaging_diffusion import (
+    run_demo as run_product_demo,
+)
 
 EXPECTED_DIR = _repo_root / "artifacts" / "expected"
 

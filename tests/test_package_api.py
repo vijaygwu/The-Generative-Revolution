@@ -23,11 +23,40 @@ def test_package_exports_core_symbols() -> None:
     assert tgr.__version__ == "0.1.0"
 
 
+def test_package_version_import_stays_lazy() -> None:
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            (
+                "import json, sys; "
+                "import the_generative_revolution as tgr; "
+                "print(json.dumps({'version': tgr.__version__, 'torch_loaded': 'torch' in sys.modules}))"
+            ),
+        ],
+        cwd=_repo_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    payload = json.loads(completed.stdout)
+    assert payload == {"version": "0.1.0", "torch_loaded": False}
+
+
 def test_cli_dispatch_function() -> None:
     result = run_named_demo("product-imaging", seed=0)
     assert result["workflow"] == "retail_product_imaging_smoke_test"
     assert result["sampler_mode"] == "classifier_free_guided_ddim"
     assert result["sampler_steps"] == 6
+
+
+def test_package_scoped_demo_module() -> None:
+    from the_generative_revolution.examples.multimodal_creative_assistant import (
+        run_demo as run_assistant_demo,
+    )
+
+    result = run_assistant_demo(seed=0)
+    assert result["workflow"] == "multimodal_creative_assistant"
 
 
 def test_python_m_entrypoint() -> None:
@@ -47,7 +76,9 @@ def test_python_m_entrypoint() -> None:
 def main() -> None:
     print("Running package API tests...")
     test_package_exports_core_symbols()
+    test_package_version_import_stays_lazy()
     test_cli_dispatch_function()
+    test_package_scoped_demo_module()
     test_python_m_entrypoint()
     print("All package API tests passed.")
 

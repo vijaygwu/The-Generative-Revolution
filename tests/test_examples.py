@@ -9,9 +9,13 @@ _repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _repo_root not in sys.path:
     sys.path.insert(0, _repo_root)
 
-from examples.anomaly_screening_flow import run_demo as run_flow_demo
-from examples.multimodal_creative_assistant import run_demo as run_assistant_demo
-from examples.product_imaging_diffusion import run_demo as run_product_demo
+from the_generative_revolution.examples.anomaly_screening_flow import run_demo as run_flow_demo
+from the_generative_revolution.examples.multimodal_creative_assistant import (
+    run_demo as run_assistant_demo,
+)
+from the_generative_revolution.examples.product_imaging_diffusion import (
+    run_demo as run_product_demo,
+)
 
 
 def test_product_imaging_demo() -> None:

@@ -60,6 +60,22 @@ def test_masked_conv2d_preserves_spatial_shape() -> None:
     assert y.shape == (2, 6, 8, 8)
 
 
+def test_masked_conv2d_rejects_nonzero_padding_modes() -> None:
+    try:
+        MaskedConv2d(
+            1,
+            1,
+            kernel_size=3,
+            padding=1,
+            mask_type="A",
+            padding_mode="reflect",
+        )
+    except ValueError as exc:
+        assert "padding_mode='zeros'" in str(exc)
+    else:
+        raise AssertionError("MaskedConv2d should reject non-zero padding modes")
+
+
 def test_masked_conv2d_type_a_blocks_current_and_future_pixels() -> None:
     layer = MaskedConv2d(1, 1, kernel_size=3, padding=1, mask_type="A", bias=False)
     with torch.no_grad():
@@ -112,6 +128,7 @@ def main() -> None:
     test_quantize_returns_expected_shapes()
     test_classifier_free_guidance_matches_formula()
     test_masked_conv2d_preserves_spatial_shape()
+    test_masked_conv2d_rejects_nonzero_padding_modes()
     test_masked_conv2d_type_a_blocks_current_and_future_pixels()
     test_masked_conv2d_type_b_keeps_current_but_blocks_future_pixels()
     print("All advanced generative tests passed.")
