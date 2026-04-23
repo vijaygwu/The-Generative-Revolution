@@ -1,6 +1,8 @@
 import numpy as np
 from scipy import linalg
 
+_FID_NEGATIVE_TOLERANCE = 1e-6
+
 
 def _stable_sqrtm(cov_prod, sigma_r, sigma_f, eps):
     covmean = linalg.sqrtm(cov_prod)
@@ -50,7 +52,7 @@ def compute_fid(real_features, fake_features, eps=1e-6):
 
     cov_term = np.trace(sigma_r + sigma_f - 2 * covmean)
     fid = float(mean_term + cov_term)
-    if fid < 0 and abs(fid) < 1e-9:
+    if fid < 0 and abs(fid) <= max(_FID_NEGATIVE_TOLERANCE, eps):
         fid = 0.0
     if fid < 0:
         raise ValueError("FID is negative beyond floating-point tolerance")

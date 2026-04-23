@@ -11,6 +11,7 @@ if _repo_root not in sys.path:
     sys.path.insert(0, _repo_root)
 
 from src.metrics import compute_fid
+from the_generative_revolution.metrics import compute_fid as package_compute_fid
 
 
 def test_compute_fid_returns_float() -> None:
@@ -32,6 +33,14 @@ def test_compute_fid_identical_features_near_zero() -> None:
 
     assert np.isfinite(fid)
     assert abs(fid) < 1e-6
+
+
+def test_compute_fid_identical_low_rank_features_clamps_to_zero() -> None:
+    real = np.array([[0.0, 1.0], [1.0, 2.0], [2.0, 3.0]])
+
+    for helper in (compute_fid, package_compute_fid):
+        fid = helper(real, real.copy())
+        assert fid == 0.0
 
 
 def test_compute_fid_rejects_rank_mismatch() -> None:
@@ -91,6 +100,7 @@ def main() -> None:
     print("Running metric tests...")
     test_compute_fid_returns_float()
     test_compute_fid_identical_features_near_zero()
+    test_compute_fid_identical_low_rank_features_clamps_to_zero()
     test_compute_fid_rejects_rank_mismatch()
     test_compute_fid_rejects_too_few_samples()
     test_compute_fid_supports_single_feature_inputs()

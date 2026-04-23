@@ -3,6 +3,7 @@ from __future__ import annotations
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from typing import Tuple
 
 
 def quantize(z: torch.Tensor, codebook: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
@@ -49,7 +50,7 @@ class MaskedConv2d(nn.Conv2d):
         self,
         in_channels: int,
         out_channels: int,
-        kernel_size: int | tuple[int, int],
+        kernel_size: int | Tuple[int, int],
         mask_type: str = "A",
         **kwargs,
     ) -> None:
