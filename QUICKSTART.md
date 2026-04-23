@@ -44,9 +44,9 @@ to inspect the raw implementation.
    - `operator_assets/ship_no_ship_checklist.md`
 
    Scope note: the shipped operator assets currently cover the reusable
-   worksheets plus the Chapter 23-25 evaluation/design-clinic workflows.
-   Chapter 26's voice evaluation bundle and design clinic remain book-only in
-   this release.
+   worksheets plus the Book Chapter 4-6 evaluation/design-clinic workflows
+   (source ch23-ch25). Book Chapter 7's voice evaluation bundle and design
+   clinic remain book-only in this release.
 
 ## What Each Example Shows
 
@@ -69,10 +69,10 @@ split-aware smoke test rather than a trained detector.
 
 ## Recommended Reading Order
 
-1. Chapter 24 + `examples/product_imaging_diffusion.py`
-2. Chapter 23 + `examples/anomaly_screening_flow.py`
-3. Chapter 25 + `examples/multimodal_creative_assistant.py`
-4. Chapter 26 for the voice decision framework; there is no mirrored companion
+1. Book Chapter 5 + `examples/product_imaging_diffusion.py`
+2. Book Chapter 4 + `examples/anomaly_screening_flow.py`
+3. Book Chapter 6 + `examples/multimodal_creative_assistant.py`
+4. Book Chapter 7 for the voice decision framework; there is no mirrored companion
    module, eval pack, or design clinic for that chapter yet
 
 ## After That

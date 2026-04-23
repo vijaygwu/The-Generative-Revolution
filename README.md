@@ -18,7 +18,7 @@ The-Generative-Revolution/
 │   ├── gan.py              # GAN baseline plus WGAN-GP helper components
 │   ├── flows.py            # RealNVP-style normalizing flows
 │   ├── diffusion.py        # DDPM / DDIM building blocks
-│   ├── advanced_generative.py  # Chapter 25 quantization and CFG helpers
+│   ├── advanced_generative.py  # Book Chapter 6 quantization and CFG helpers
 │   ├── metrics.py          # Evaluation helpers such as FID
 │   ├── utils.py            # Small shared utilities
 │   └── __init__.py         # Lazy exports for the companion API
@@ -29,15 +29,15 @@ The-Generative-Revolution/
 
 ## Chapters Covered
 
-| Chapter | Topic | Companion Module |
-|---------|-------|------------------|
-| 20 | Introduction to Generative Models | Orientation only; no mirrored code block |
-| 21 | Variational Autoencoders | `src/vae.py` |
-| 22 | Generative Adversarial Networks | `src/gan.py` |
-| 23 | Normalizing Flows | `src/flows.py` |
-| 24 | Diffusion Models | `src/diffusion.py` |
-| 25 | Advanced Generative Models | `src/advanced_generative.py`, `src/metrics.py`, `src/utils.py` |
-| 26 | Audio and Voice Models | Book-only chapter in this release; no mirrored companion module or operator-asset pack yet |
+| Book Chapter | Source Chapter | Topic | Companion Module |
+|--------------|----------------|-------|------------------|
+| 1 | ch20 | Introduction to Generative Models | Orientation only; no mirrored code block |
+| 2 | ch21 | Variational Autoencoders | `src/vae.py` |
+| 3 | ch22 | Generative Adversarial Networks | `src/gan.py` |
+| 4 | ch23 | Normalizing Flows | `src/flows.py` |
+| 5 | ch24 | Diffusion Models | `src/diffusion.py` |
+| 6 | ch25 | Advanced Generative Models | `src/advanced_generative.py`, `src/metrics.py`, `src/utils.py` |
+| 7 | ch26 | Audio and Voice Models | Book-only chapter in this release; no mirrored companion module or operator-asset pack yet |
 
 ## Quick Start
 
@@ -57,13 +57,13 @@ If you want the fastest path into the repo, start with [QUICKSTART.md](QUICKSTAR
 The companion now includes lightweight product-style demos in `examples/`:
 
 - `examples/product_imaging_diffusion.py`
-  An untrained retail product-imaging smoke test for Chapter 24 with a single
+  An untrained retail product-imaging smoke test for Book Chapter 5 with a single
   null-conditioned loss pass and classifier-free-guided DDIM sampling
 - `examples/anomaly_screening_flow.py`
-  An untrained anomaly-screening smoke test for Chapter 23 that keeps
+  An untrained anomaly-screening smoke test for Book Chapter 4 that keeps
   calibration separate from the evaluated reference and anomaly batches
 - `examples/multimodal_creative_assistant.py`
-  A retrieval-guidance-evaluation workflow for Chapter 25
+  A retrieval-guidance-evaluation workflow for Book Chapter 6
 
 These scripts use synthetic inputs so they run without external datasets while
 still exercising the maintained reference implementations.
@@ -79,11 +79,11 @@ stays diff-friendly.
 
 If you want the operator layer from the book rather than another code path,
 open `operator_assets/`. That folder mirrors the most reusable practitioner
-tools from Book 3 through Chapter 25: the G-CLEDO scorecard, benchmark brief,
-failure triage sheet, design clinics, evaluation packs, ship checklist,
-economics sheet, and a reusable modelopsy template. Chapter 26's voice
-evaluation bundle and design clinic currently remain book-only; this companion
-release does not yet ship a voice eval pack or voice clinic.
+tools from Book 3 through Book Chapter 6 (source ch25): the G-CLEDO scorecard,
+benchmark brief, failure triage sheet, design clinics, evaluation packs, ship
+checklist, economics sheet, and a reusable modelopsy template. Book Chapter 7's
+voice evaluation bundle and design clinic currently remain book-only; this
+companion release does not yet ship a voice eval pack or voice clinic.
 
 For a package-style workflow, you can also run:
 
