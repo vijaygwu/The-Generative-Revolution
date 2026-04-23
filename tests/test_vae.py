@@ -85,6 +85,20 @@ def test_conv_vae_forward_shapes() -> None:
     assert torch.isfinite(logvar).all()
 
 
+def test_vae_loss_accepts_conv_vae_reconstructions() -> None:
+    torch.manual_seed(0)
+    model = ConvVAE()
+    x = torch.rand(2, 1, 28, 28)
+
+    x_recon, mu, logvar = model(x)
+    total_loss, recon_loss, kl_loss = vae_loss(x_recon, x, mu, logvar)
+
+    assert torch.isfinite(total_loss)
+    assert torch.isfinite(recon_loss)
+    assert torch.isfinite(kl_loss)
+    assert total_loss.item() >= recon_loss.item()
+
+
 def test_train_vae_accepts_unlabeled_and_labeled_batches() -> None:
     torch.manual_seed(0)
     model = VAE(input_dim=16, hidden_dim=8, latent_dim=4)
@@ -105,6 +119,7 @@ def main() -> None:
     test_vae_loss_outputs()
     test_vae_supports_nondefault_input_dim()
     test_conv_vae_forward_shapes()
+    test_vae_loss_accepts_conv_vae_reconstructions()
     test_train_vae_accepts_unlabeled_and_labeled_batches()
     print("All VAE tests passed.")
 

@@ -61,12 +61,16 @@ class VAE(nn.Module):
 
 def vae_loss(x_recon, x, mu, logvar, beta=1.0):
     x_flat = x.view(x.size(0), -1)
-    if x_recon.shape != x_flat.shape:
+    if x_recon.shape == x.shape:
+        recon_target = x
+    elif x_recon.shape == x_flat.shape:
+        recon_target = x_flat
+    else:
         raise ValueError(
-            f"x_recon shape {tuple(x_recon.shape)} must match flattened input "
-            f"shape {tuple(x_flat.shape)}"
+            f"x_recon shape {tuple(x_recon.shape)} must match input shape "
+            f"{tuple(x.shape)} or flattened input shape {tuple(x_flat.shape)}"
         )
-    recon_loss = F.binary_cross_entropy(x_recon, x_flat, reduction="sum")
+    recon_loss = F.binary_cross_entropy(x_recon, recon_target, reduction="sum")
     kl_loss = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
     total_loss = recon_loss + beta * kl_loss
     return total_loss, recon_loss, kl_loss
