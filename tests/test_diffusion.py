@@ -71,6 +71,20 @@ def test_simple_unet_small_channel_count() -> None:
     assert torch.isfinite(out).all()
 
 
+def test_simple_unet_rejects_incompatible_spatial_size() -> None:
+    torch.manual_seed(0)
+    model = SimpleUNet(in_ch=3, out_ch=3, ch=8, time_dim=32)
+    x = torch.randn(2, 3, 30, 30)
+    t = torch.randint(0, 10, (2,), dtype=torch.long)
+
+    try:
+        model(x, t)
+    except ValueError as exc:
+        assert "height and width divisible by 4" in str(exc)
+    else:
+        raise AssertionError("SimpleUNet accepted incompatible spatial dimensions")
+
+
 def test_ddpm_core_paths() -> None:
     torch.manual_seed(0)
     model = SimpleUNet(in_ch=3, out_ch=3, ch=8, time_dim=32)
@@ -140,6 +154,7 @@ def main() -> None:
     test_resblock_shape()
     test_simple_unet_shape()
     test_simple_unet_small_channel_count()
+    test_simple_unet_rejects_incompatible_spatial_size()
     test_ddpm_core_paths()
     test_ddim_timestep_schedule_includes_endpoints()
     test_ddim_reuses_fixed_initial_noise_deterministically()

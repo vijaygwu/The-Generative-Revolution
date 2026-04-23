@@ -93,6 +93,14 @@ class SimpleUNet(nn.Module):
         self.conv_out = nn.Conv2d(ch, out_ch, 1)
 
     def forward(self, x, t, cond=None):
+        if x.ndim != 4:
+            raise ValueError("SimpleUNet expects input shaped (batch, channels, height, width)")
+        if x.shape[-2] % 4 != 0 or x.shape[-1] % 4 != 0:
+            raise ValueError(
+                "SimpleUNet expects height and width divisible by 4 "
+                "because it uses two 2x downsampling stages"
+            )
+
         t_emb = self.time_embed(t)
         if self.cond_proj is not None:
             if cond is None:
