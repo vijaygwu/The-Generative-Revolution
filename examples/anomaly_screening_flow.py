@@ -1,5 +1,12 @@
 """Compatibility wrapper for the package-scoped anomaly-screening demo."""
 
+from pathlib import Path
+import sys
+
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
 from the_generative_revolution.examples.anomaly_screening_flow import main, run_demo
 
 __all__ = ["main", "run_demo"]

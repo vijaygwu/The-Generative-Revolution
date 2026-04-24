@@ -20,16 +20,27 @@ pip install -e ".[dev]"
 python tests/validate_runtime_stack.py
 ```
 
-3. Run one practitioner workflow from `examples/`:
+3. Run one practitioner workflow from the companion repo root:
 
 ```bash
 tgr-demo product-imaging
 tgr-demo anomaly-screening
 tgr-demo creative-assistant
+
+# equivalent package entry points
+python -m the_generative_revolution product-imaging --seed 0
+python -m the_generative_revolution anomaly-screening --seed 0
+python -m the_generative_revolution creative-assistant --seed 0
 ```
 
-You can still run the underlying scripts directly from `examples/` if you want
-to inspect the raw implementation.
+If you want to inspect the raw wrappers instead, the same demos also run
+directly from an uninstalled checkout:
+
+```bash
+python examples/product_imaging_diffusion.py
+python examples/anomaly_screening_flow.py
+python examples/multimodal_creative_assistant.py
+```
 
 4. Compare your run with the saved expected outputs in `artifacts/expected/`.
    The companion also includes matching notebooks in `notebooks/` if you want a

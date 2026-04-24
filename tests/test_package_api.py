@@ -73,6 +73,34 @@ def test_python_m_entrypoint() -> None:
     assert payload["triage_sample_shape"] == [4, 6]
 
 
+def test_examples_wrappers_run_from_repo_root() -> None:
+    wrappers = [
+        (
+            "examples/product_imaging_diffusion.py",
+            "retail_product_imaging_smoke_test",
+        ),
+        (
+            "examples/anomaly_screening_flow.py",
+            "industrial_anomaly_screening_smoke_test",
+        ),
+        (
+            "examples/multimodal_creative_assistant.py",
+            "multimodal_creative_assistant",
+        ),
+    ]
+
+    for script_path, workflow in wrappers:
+        completed = subprocess.run(
+            [sys.executable, script_path],
+            cwd=_repo_root,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        payload = json.loads(completed.stdout)
+        assert payload["workflow"] == workflow
+
+
 def main() -> None:
     print("Running package API tests...")
     test_package_exports_core_symbols()
@@ -80,6 +108,7 @@ def main() -> None:
     test_cli_dispatch_function()
     test_package_scoped_demo_module()
     test_python_m_entrypoint()
+    test_examples_wrappers_run_from_repo_root()
     print("All package API tests passed.")
 
 
