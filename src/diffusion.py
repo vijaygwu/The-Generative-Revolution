@@ -190,12 +190,8 @@ class DDPM:
 
     def _ddim_timesteps(self, steps):
         # Returned indices live in 0..T-1 and therefore map to math timesteps 1..T.
+        # The terminal x_0 update is handled separately with alpha_bar_prev = 1.
         steps = max(1, min(int(steps), self.T))
-        if self.T == 1:
-            return [0]
-        if steps == 1:
-            return [self.T - 1, 0]
-
         timesteps = torch.linspace(
             self.T - 1, 0, steps, device=self.betas.device
         ).round().long()
@@ -235,12 +231,12 @@ class DDPM:
             if i < len(timesteps) - 1:
                 t_prev = timesteps[i + 1]
                 alpha_bar_prev = self.alpha_bars[t_prev]
-                x = (
-                    torch.sqrt(alpha_bar_prev) * x0_pred
-                    + torch.sqrt(1 - alpha_bar_prev) * noise_pred
-                )
             else:
-                x = x0_pred
+                alpha_bar_prev = torch.ones_like(alpha_bar_t)
+            x = (
+                torch.sqrt(alpha_bar_prev) * x0_pred
+                + torch.sqrt(1 - alpha_bar_prev) * noise_pred
+            )
 
         return x
 
