@@ -77,7 +77,13 @@ def vae_loss(x_recon, x, mu, logvar, beta=1.0):
 
 
 def train_vae(model, dataloader, optimizer, epochs, device, beta=1.0):
-    model = model.to(device)
+    target_device = torch.device(device)
+    model_device = next(model.parameters()).device
+    if model_device != target_device:
+        raise ValueError(
+            "move the model to the target device before creating the optimizer; "
+            f"model is on {model_device}, requested device is {target_device}"
+        )
     model.train()
 
     def extract_inputs(batch):
@@ -88,7 +94,7 @@ def train_vae(model, dataloader, optimizer, epochs, device, beta=1.0):
     for epoch in range(epochs):
         total_loss = 0.0
         for batch in dataloader:
-            data = extract_inputs(batch).to(device)
+            data = extract_inputs(batch).to(target_device)
 
             optimizer.zero_grad()
             x_recon, mu, logvar = model(data)

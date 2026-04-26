@@ -80,14 +80,29 @@ split-aware smoke test rather than a trained detector.
 
 ## Recommended Reading Order
 
+1. Book Chapter 1 for the generative-model family map and decision criteria that
+   the rest of the companion code assumes
+2. Book Chapter 2 + `src/vae.py` and `tests/test_vae.py`
+3. Book Chapter 3 + `src/gan.py` and `tests/test_gan.py`
+4. Book Chapter 4 + `examples/anomaly_screening_flow.py` and
+   `tests/test_flows.py`
+5. Book Chapter 5 + `examples/product_imaging_diffusion.py` and
+   `tests/test_diffusion.py`
+6. Book Chapter 6 + `examples/multimodal_creative_assistant.py`
+7. Book Chapter 7 for the voice decision framework; it remains book-only in this
+   companion release, so there is no mirrored voice module, eval pack, or design
+   clinic yet
+8. Book Chapter 8 + `src/metrics.py` and `operator_assets/README.md` for the
+   evaluation bundle, field-manual assets, and release-gate checklists
+
+## Demo-First Shortcut
+
+If you already know the model families and want the fastest hands-on path, use
+this shorter sequence instead:
+
 1. Book Chapter 5 + `examples/product_imaging_diffusion.py`
 2. Book Chapter 4 + `examples/anomaly_screening_flow.py`
 3. Book Chapter 6 + `examples/multimodal_creative_assistant.py`
-4. Book Chapter 7 for the voice decision framework; it remains book-only in this
-   companion release, so there is no mirrored voice module, eval pack, or design
-   clinic yet
-5. Book Chapter 8 + `src/metrics.py` and `operator_assets/README.md` for the
-   evaluation bundle, field-manual assets, and release-gate checklists
 
 ## After That
 
