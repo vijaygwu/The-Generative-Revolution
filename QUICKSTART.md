@@ -83,8 +83,11 @@ split-aware smoke test rather than a trained detector.
 1. Book Chapter 5 + `examples/product_imaging_diffusion.py`
 2. Book Chapter 4 + `examples/anomaly_screening_flow.py`
 3. Book Chapter 6 + `examples/multimodal_creative_assistant.py`
-4. Book Chapter 7 for the voice decision framework; there is no mirrored companion
-   module, eval pack, or design clinic for that chapter yet
+4. Book Chapter 7 for the voice decision framework; it remains book-only in this
+   companion release, so there is no mirrored voice module, eval pack, or design
+   clinic yet
+5. Book Chapter 8 + `src/metrics.py` and `operator_assets/README.md` for the
+   evaluation bundle, field-manual assets, and release-gate checklists
 
 ## After That
 

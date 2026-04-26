@@ -11,6 +11,8 @@ if _repo_root not in sys.path:
     sys.path.insert(0, _repo_root)
 
 from src.diffusion import DDPM, ResBlock, SimpleUNet, SinusoidalPosEmbed, train_diffusion
+from the_generative_revolution.diffusion import DDPM as PackageDDPM
+from the_generative_revolution.diffusion import SimpleUNet as PackageSimpleUNet
 
 
 def test_sinusoidal_pos_embed_shape() -> None:
@@ -135,6 +137,29 @@ def test_ddim_reuses_fixed_initial_noise_deterministically() -> None:
     assert torch.equal(first, second)
 
 
+def test_package_diffusion_matches_src_ddim_path() -> None:
+    torch.manual_seed(0)
+    src_model = SimpleUNet(in_ch=3, out_ch=3, ch=8, time_dim=32)
+    package_model = PackageSimpleUNet(in_ch=3, out_ch=3, ch=8, time_dim=32)
+    package_model.load_state_dict(src_model.state_dict())
+
+    src_ddpm = DDPM(src_model, T=10, device="cpu")
+    package_ddpm = PackageDDPM(package_model, T=10, device="cpu")
+    initial_noise = torch.randn(2, 3, 32, 32)
+
+    assert src_ddpm._ddim_timesteps(steps=1) == package_ddpm._ddim_timesteps(steps=1)
+    assert src_ddpm._ddim_timesteps(steps=6) == package_ddpm._ddim_timesteps(steps=6)
+
+    src_samples = src_ddpm.sample_ddim(
+        (2, 3, 32, 32), steps=5, initial_noise=initial_noise
+    )
+    package_samples = package_ddpm.sample_ddim(
+        (2, 3, 32, 32), steps=5, initial_noise=initial_noise
+    )
+
+    assert torch.equal(src_samples, package_samples)
+
+
 def test_train_diffusion_accepts_unlabeled_and_labeled_batches() -> None:
     torch.manual_seed(0)
     model = SimpleUNet(in_ch=1, out_ch=1, ch=8, time_dim=32)
@@ -158,6 +183,7 @@ def main() -> None:
     test_ddpm_core_paths()
     test_ddim_timestep_schedule_includes_endpoints()
     test_ddim_reuses_fixed_initial_noise_deterministically()
+    test_package_diffusion_matches_src_ddim_path()
     test_train_diffusion_accepts_unlabeled_and_labeled_batches()
     print("All diffusion tests passed.")
 
