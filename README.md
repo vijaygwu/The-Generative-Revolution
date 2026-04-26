@@ -36,7 +36,7 @@ The-Generative-Revolution/
 | 3 | ch22 | Generative Adversarial Networks | `src/gan.py` |
 | 4 | ch23 | Normalizing Flows | `src/flows.py` |
 | 5 | ch24 | Diffusion Models | `src/diffusion.py` |
-| 6 | ch25 | Advanced Generative Models | `src/advanced_generative.py`, `src/metrics.py`, `src/utils.py` |
+| 6 | ch25 | Advanced Generative Models, Evaluation, and Frontiers | `src/advanced_generative.py`, `src/metrics.py`, `src/utils.py` |
 | 7 | ch26 | Audio and Voice Models | Book-only chapter in this release; no mirrored companion module or operator-asset pack yet |
 
 ## Quick Start
