@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 
 class VAE(nn.Module):
-    """Variational Autoencoder for MNIST-like images."""
+    """Variational Autoencoder for binarized MNIST-like images."""
 
     def __init__(self, input_dim=784, hidden_dim=400, latent_dim=20):
         super().__init__()
@@ -59,6 +59,11 @@ class VAE(nn.Module):
         return self.decode(z)
 
 
+def binarize_observations(x, threshold=0.5):
+    """Threshold intensities so BCE matches a Bernoulli observation model."""
+    return (x >= threshold).to(dtype=x.dtype)
+
+
 def vae_loss(x_recon, x, mu, logvar, beta=1.0):
     x_flat = x.view(x.size(0), -1)
     if x_recon.shape == x.shape:
@@ -95,6 +100,7 @@ def train_vae(model, dataloader, optimizer, epochs, device, beta=1.0):
         total_loss = 0.0
         for batch in dataloader:
             data = extract_inputs(batch).to(target_device)
+            data = binarize_observations(data)
 
             optimizer.zero_grad()
             x_recon, mu, logvar = model(data)
@@ -110,7 +116,7 @@ def train_vae(model, dataloader, optimizer, epochs, device, beta=1.0):
 
 
 class ConvVAE(nn.Module):
-    """Convolutional VAE for 28x28 images."""
+    """Convolutional VAE for 28x28 binarized images."""
 
     def __init__(self, latent_dim=32):
         super().__init__()
