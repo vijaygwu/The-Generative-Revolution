@@ -82,13 +82,19 @@ def vae_loss(x_recon, x, mu, logvar, beta=1.0):
 
 
 def train_vae(model, dataloader, optimizer, epochs, device, beta=1.0):
-    target_device = torch.device(device)
+    requested_device = torch.device(device)
     model_device = next(model.parameters()).device
-    if model_device != target_device:
+    same_type = model_device.type == requested_device.type
+    same_index = (
+        requested_device.index is None
+        or model_device.index == requested_device.index
+    )
+    if not (same_type and same_index):
         raise ValueError(
             "move the model to the target device before creating the optimizer; "
-            f"model is on {model_device}, requested device is {target_device}"
+            f"model is on {model_device}, requested device is {requested_device}"
         )
+    target_device = model_device
     model.train()
 
     def extract_inputs(batch):

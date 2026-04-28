@@ -38,7 +38,10 @@ def _group_norm(channel_count, max_groups=8):
     for groups in range(min(max_groups, channel_count), 0, -1):
         if channel_count % groups == 0:
             return nn.GroupNorm(groups, channel_count)
-    raise ValueError(f"Could not find a valid GroupNorm divisor for {channel_count} channels")
+    raise ValueError(
+        "Could not find a valid GroupNorm divisor "
+        f"for {channel_count} channels"
+    )
 
 
 class ResBlock(nn.Module):
@@ -94,7 +97,10 @@ class SimpleUNet(nn.Module):
 
     def forward(self, x, t, cond=None):
         if x.ndim != 4:
-            raise ValueError("SimpleUNet expects input shaped (batch, channels, height, width)")
+            raise ValueError(
+                "SimpleUNet expects input shaped "
+                "(batch, channels, height, width)"
+            )
         if x.shape[-2] % 4 != 0 or x.shape[-1] % 4 != 0:
             raise ValueError(
                 "SimpleUNet expects height and width divisible by 4 "
@@ -214,7 +220,8 @@ class DDPM:
         else:
             if tuple(initial_noise.shape) != shape:
                 raise ValueError(
-                    f"initial_noise shape {tuple(initial_noise.shape)} does not match requested shape {shape}"
+                    f"initial_noise shape {tuple(initial_noise.shape)} "
+                    f"does not match requested shape {shape}"
                 )
             x = initial_noise.to(self.device)
 

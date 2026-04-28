@@ -13,7 +13,7 @@ The-Generative-Revolution/
 ├── examples/               # Product-style runnable demos built on the modules
 ├── notebooks/              # Lightweight exploratory companions for key workflows
 ├── operator_assets/        # Printable field-manual templates from the book
-├── src/                    # Maintained runnable reference implementations
+├── src/                    # Printed chapter-snippet mirrors for inspection
 │   ├── vae.py              # Variational autoencoder examples
 │   ├── gan.py              # GAN baseline plus WGAN-GP helper components
 │   ├── flows.py            # RealNVP-style normalizing flows
@@ -22,10 +22,16 @@ The-Generative-Revolution/
 │   ├── metrics.py          # Evaluation helpers such as FID
 │   ├── utils.py            # Small shared utilities
 │   └── __init__.py         # Lazy exports for the companion API
+├── the_generative_revolution/  # Installable package used by CLI entry points
 ├── tests/                  # Direct script validation tests
 ├── requirements.txt        # Runtime plus notebook/test dependencies for the companion
 └── README.md
 ```
+
+`src/` mirrors the printed chapter snippets so readers can compare manuscript
+code directly with maintained files. `the_generative_revolution/` is the
+installable package used by `tgr-demo` and `python -m the_generative_revolution`;
+it carries the same runtime surface behind the package-style commands.
 
 ## Chapters Covered
 
@@ -39,6 +45,9 @@ The-Generative-Revolution/
 | 6 | ch25 | Advanced Generative Models and Frontiers | `src/advanced_generative.py`, `src/utils.py` |
 | 7 | ch26 | Audio and Voice Models | Book-only chapter in this release; no mirrored companion module or operator-asset pack yet |
 | 8 | ch27 | Generative Evaluation | `src/metrics.py`, `operator_assets/README.md`, `operator_assets/eval_pack_*.md` |
+
+The installable package exposes matching runtime modules under
+`the_generative_revolution/` for the `src/*.py` entries above.
 
 ## Quick Start
 
@@ -79,12 +88,13 @@ The notebooks are intentionally committed with cleared outputs so the repo
 stays diff-friendly.
 
 If you want the operator layer from the book rather than another code path,
-open `operator_assets/`. That folder mirrors the most reusable practitioner
-tools from Book 3 through Book Chapter 6 (source ch25): the G-CLEDO scorecard,
-benchmark brief, failure triage sheet, design clinics, evaluation packs, ship
-checklist, economics sheet, and a reusable modelopsy template. Book Chapter 7's
-voice evaluation bundle and design clinic currently remain book-only; this
-companion release does not yet ship a voice eval pack or voice clinic.
+open `operator_assets/`. That folder ships the reusable Book 3 field-manual
+layer: the G-CLEDO scorecard, benchmark brief, failure triage sheet, design
+clinics, evaluation packs for imaging, anomaly screening, and multimodal
+workflows, the ship checklist, economics sheet, and a reusable modelopsy
+template. Book Chapter 7's voice evaluation bundle and design clinic currently
+remain book-only; this companion release does not yet ship a voice eval pack or
+voice clinic.
 
 For a package-style workflow, you can also run:
 

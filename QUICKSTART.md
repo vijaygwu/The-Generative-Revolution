@@ -14,6 +14,10 @@ source venv/bin/activate
 pip install -e ".[dev]"
 ```
 
+`src/` mirrors the printed chapter snippets for inspection. The commands below
+run through the installable `the_generative_revolution/` package, which is the
+runtime surface behind `tgr-demo` and `python -m the_generative_revolution`.
+
 2. Run the runtime smoke test:
 
 ```bash
@@ -54,10 +58,10 @@ python examples/multimodal_creative_assistant.py
    - `operator_assets/design_clinics/retail_product_imaging.md`
    - `operator_assets/ship_no_ship_checklist.md`
 
-   Scope note: the shipped operator assets currently cover the reusable
-   worksheets plus the Book Chapter 4-6 evaluation/design-clinic workflows
-   (source ch23-ch25). Book Chapter 7's voice evaluation bundle and design
-   clinic remain book-only in this release.
+   Scope note: the shipped operator assets cover the reusable Book 3
+   field-manual layer, including evaluation packs and design clinics for
+   imaging, anomaly screening, and multimodal workflows. Book Chapter 7's voice
+   evaluation bundle and design clinic remain book-only in this release.
 
 ## What Each Example Shows
 
@@ -121,8 +125,9 @@ python tests/test_flows.py
 python tests/test_diffusion.py
 ```
 
-- Open the corresponding `src/*.py` files to see the maintained reference
-  implementations behind each demo.
+- Open the corresponding `src/*.py` files to compare against the printed
+  chapter snippets, and `the_generative_revolution/*.py` for the installable
+  package modules behind each demo.
 - Open `operator_assets/` if you want the field-manual templates rather than
   more implementation detail. The `design_clinics/` subfolder is the fastest
   path if you want a concrete product memo rather than a blank worksheet.

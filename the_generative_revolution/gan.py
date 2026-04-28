@@ -94,6 +94,9 @@ def train_gan(generator, discriminator, dataloader, epochs=100, device=None):
             d_loss.backward()
             d_optimizer.step()
 
+            for param in discriminator.parameters():
+                param.requires_grad_(False)
+
             z = torch.randn(batch_size, latent_dim, device=device)
             fake_imgs = generator(z)
             g_loss = criterion(discriminator(fake_imgs), real_labels)
@@ -101,6 +104,9 @@ def train_gan(generator, discriminator, dataloader, epochs=100, device=None):
             g_optimizer.zero_grad()
             g_loss.backward()
             g_optimizer.step()
+
+            for param in discriminator.parameters():
+                param.requires_grad_(True)
 
 
 class WGANCritic(nn.Module):

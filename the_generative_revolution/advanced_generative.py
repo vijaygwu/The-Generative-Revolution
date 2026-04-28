@@ -94,7 +94,12 @@ class TinyConditionedDenoiser(nn.Module):
         super().__init__()
         self.cond_proj = nn.Linear(cond_dim, channels)
 
-    def forward(self, x_t: torch.Tensor, t: torch.Tensor, cond: torch.Tensor) -> torch.Tensor:
+    def forward(
+        self,
+        x_t: torch.Tensor,
+        t: torch.Tensor,
+        cond: torch.Tensor,
+    ) -> torch.Tensor:
         del t
         bias = self.cond_proj(cond).view(x_t.size(0), x_t.size(1), 1, 1)
         return x_t + bias

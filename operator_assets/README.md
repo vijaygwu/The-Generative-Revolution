@@ -3,11 +3,11 @@
 These assets turn the companion from a runnable code repo into a small working
 kit for practitioners.
 
-Current scope note: this folder ships the reusable field-manual layer plus the
-Book Chapter 4-6 workflow-specific clinics and evaluation packs (source
-ch23-ch25). Book Chapter 7's voice evaluation bundle and design clinic remain
-book-only in this release, so there is no voice-specific eval pack or voice
-clinic in `operator_assets/` yet.
+Current scope note: this folder ships the reusable Book 3 field-manual layer,
+including evaluation packs and design clinics for imaging, anomaly screening,
+and multimodal workflows. Book Chapter 7's voice evaluation bundle and design
+clinic remain book-only in this release, so there is no voice-specific eval pack
+or voice clinic in `operator_assets/` yet.
 
 Use them with the book, not instead of the book:
 
