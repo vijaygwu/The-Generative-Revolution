@@ -102,6 +102,8 @@ def test_train_gan_smoke() -> None:
     dataloader = DataLoader(TensorDataset(x, y), batch_size=4, shuffle=False)
 
     train_gan(generator, discriminator, dataloader, epochs=1)
+    # k>1 discriminator steps per generator step (Algorithm 2's k)
+    train_gan(generator, discriminator, dataloader, epochs=1, d_steps=2)
 
 
 def test_train_gan_respects_generator_latent_dim() -> None:
