@@ -7,6 +7,7 @@ Check every line before launch.
 - The top three failure modes can be reproduced on demand
 - Serving defaults are frozen and documented
 - A fallback path exists for uncertainty, unsafe outputs, or low-confidence behavior
+- Required rights and authorizations are documented (for voice work: speaker consent for identity, cloning, or style transfer)
 - Human review is included where the workflow requires it
 - Provenance is logged for prompts, retrieval, sampler settings, or thresholds
 - The real latency budget is met on the intended surface
