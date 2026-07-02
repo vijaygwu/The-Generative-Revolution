@@ -1,4 +1,4 @@
-# G-CLEDO Scorecard
+# G-CLDEO Scorecard
 
 Use this sheet to compare model families as product choices rather than as
 research abstractions.

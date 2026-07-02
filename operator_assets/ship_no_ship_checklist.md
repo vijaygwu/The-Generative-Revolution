@@ -12,6 +12,7 @@ Check every line before launch.
 - Provenance is logged for prompts, retrieval, sampler settings, or thresholds
 - The real latency budget is met on the intended surface
 - Reviewer load is acceptable under the chosen threshold or policy
+- A rollback path to the previous checkpoint/config exists and has been exercised
 - Release owners agree on ship, constrained ship, or no ship
 
 ## Decision

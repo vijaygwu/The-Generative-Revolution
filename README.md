@@ -89,7 +89,7 @@ stays diff-friendly.
 
 If you want the operator layer from the book rather than another code path,
 open `operator_assets/`. That folder ships the reusable Book 3 field-manual
-layer: the G-CLEDO scorecard, benchmark brief, failure triage sheet, design
+layer: the G-CLDEO scorecard, benchmark brief, failure triage sheet, design
 clinics, evaluation packs for imaging, anomaly screening, and multimodal
 workflows, the ship checklist, economics sheet, and a reusable modelopsy
 template. Book Chapter 7's voice evaluation bundle and design clinic currently
