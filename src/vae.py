@@ -44,7 +44,7 @@ class VAE(nn.Module):
         x_flat = x.view(x.size(0), -1)
         if x_flat.size(1) != self.input_dim:
             raise ValueError(
-                f"expected flattened input_dim={self.input_dim}, got {x_flat.size(1)}"
+                f"expected input_dim={self.input_dim}, got {x_flat.size(1)}"
             )
         mu, logvar = self.encode(x_flat)
         z = self.reparameterize(mu, logvar)
