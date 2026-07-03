@@ -14,8 +14,8 @@ The-Generative-Revolution/
 ├── notebooks/              # Lightweight exploratory companions for key workflows
 ├── operator_assets/        # Printable field-manual templates from the book
 ├── src/                    # Printed chapter-snippet mirrors for inspection
-│   ├── vae.py              # Variational autoencoder examples
-│   ├── gan.py              # GAN baseline plus WGAN-GP helper components
+│   ├── vae.py              # Variational autoencoder examples with recon/KL split logging
+│   ├── gan.py              # GAN baseline (DCGAN Adam betas, d_steps ratio) plus WGAN-GP helpers
 │   ├── flows.py            # RealNVP-style normalizing flows
 │   ├── diffusion.py        # DDPM / DDIM building blocks
 │   ├── advanced_generative.py  # Book Chapter 6 quantization and CFG helpers
@@ -38,8 +38,8 @@ it carries the same runtime surface behind the package-style commands.
 | Book Chapter | Source Chapter | Topic | Companion Module |
 |--------------|----------------|-------|------------------|
 | 1 | ch20 | Introduction to Generative Models | Orientation only; no mirrored code block |
-| 2 | ch21 | Variational Autoencoders | `src/vae.py` |
-| 3 | ch22 | Generative Adversarial Networks | `src/gan.py` |
+| 2 | ch21 | Variational Autoencoders | `src/vae.py` (per-epoch loss reported with reconstruction/KL split) |
+| 3 | ch22 | Generative Adversarial Networks | `src/gan.py` (DCGAN training defaults: Adam `betas=(0.5, 0.999)`, configurable `d_steps`) |
 | 4 | ch23 | Normalizing Flows | `src/flows.py` |
 | 5 | ch24 | Diffusion Models | `src/diffusion.py` |
 | 6 | ch25 | Advanced Generative Models and Frontiers | `src/advanced_generative.py`, `src/utils.py` |
