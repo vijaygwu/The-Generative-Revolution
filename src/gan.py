@@ -63,8 +63,12 @@ def train_gan(generator, discriminator, dataloader, epochs=100, device=None,
     discriminator.train()
 
     criterion = nn.BCEWithLogitsLoss()
-    g_optimizer = torch.optim.Adam(generator.parameters(), lr=0.0002)
-    d_optimizer = torch.optim.Adam(discriminator.parameters(), lr=0.0002)
+    # betas=(0.5, 0.999): standard GAN practice since DCGAN; the default
+    # beta1=0.9 is a known driver of unstable adversarial training.
+    g_optimizer = torch.optim.Adam(generator.parameters(), lr=0.0002,
+                                   betas=(0.5, 0.999))
+    d_optimizer = torch.optim.Adam(discriminator.parameters(), lr=0.0002,
+                                   betas=(0.5, 0.999))
     latent_dim = generator.latent_dim
 
     def extract_inputs(batch):

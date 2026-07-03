@@ -44,7 +44,7 @@ class VAE(nn.Module):
         x_flat = x.view(x.size(0), -1)
         if x_flat.size(1) != self.input_dim:
             raise ValueError(
-                f"expected flattened input_dim={self.input_dim}, got {x_flat.size(1)}"
+                f"expected input_dim={self.input_dim}, got {x_flat.size(1)}"
             )
         mu, logvar = self.encode(x_flat)
         z = self.reparameterize(mu, logvar)
@@ -104,6 +104,8 @@ def train_vae(model, dataloader, optimizer, epochs, device, beta=1.0):
 
     for epoch in range(epochs):
         total_loss = 0.0
+        total_recon = 0.0
+        total_kl = 0.0
         for batch in dataloader:
             data = extract_inputs(batch).to(target_device)
             data = binarize_observations(data)
@@ -116,9 +118,13 @@ def train_vae(model, dataloader, optimizer, epochs, device, beta=1.0):
             optimizer.step()
 
             total_loss += loss.item()
+            total_recon += recon.item()
+            total_kl += kl.item()
 
-        avg_loss = total_loss / len(dataloader.dataset)
-        print(f"Epoch {epoch+1}: Average Loss = {avg_loss:.4f}")
+        n = len(dataloader.dataset)
+        avg_loss = total_loss / n
+        print(f"Epoch {epoch+1}: Average Loss = {avg_loss:.4f} "
+              f"(recon {total_recon / n:.4f}, KL {total_kl / n:.4f})")
 
 
 class ConvVAE(nn.Module):

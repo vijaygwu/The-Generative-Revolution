@@ -52,7 +52,8 @@ class Discriminator(nn.Module):
         return self.model(img)
 
 
-def train_gan(generator, discriminator, dataloader, epochs=100, device=None):
+def train_gan(generator, discriminator, dataloader, epochs=100, device=None,
+              d_steps=1):
     if device is None:
         device = next(generator.parameters()).device
 
@@ -62,8 +63,12 @@ def train_gan(generator, discriminator, dataloader, epochs=100, device=None):
     discriminator.train()
 
     criterion = nn.BCEWithLogitsLoss()
-    g_optimizer = torch.optim.Adam(generator.parameters(), lr=0.0002)
-    d_optimizer = torch.optim.Adam(discriminator.parameters(), lr=0.0002)
+    # betas=(0.5, 0.999): standard GAN practice since DCGAN; the default
+    # beta1=0.9 is a known driver of unstable adversarial training.
+    g_optimizer = torch.optim.Adam(generator.parameters(), lr=0.0002,
+                                   betas=(0.5, 0.999))
+    d_optimizer = torch.optim.Adam(discriminator.parameters(), lr=0.0002,
+                                   betas=(0.5, 0.999))
     latent_dim = generator.latent_dim
 
     def extract_inputs(batch):
@@ -83,16 +88,18 @@ def train_gan(generator, discriminator, dataloader, epochs=100, device=None):
             real_labels = torch.ones(batch_size, 1, device=device)
             fake_labels = torch.zeros(batch_size, 1, device=device)
 
-            z = torch.randn(batch_size, latent_dim, device=device)
-            fake_imgs = generator(z).detach()
+            # Discriminator: d_steps updates per generator step (Algorithm 2's k)
+            for _ in range(d_steps):
+                z = torch.randn(batch_size, latent_dim, device=device)
+                fake_imgs = generator(z).detach()
 
-            d_loss_real = criterion(discriminator(real_imgs), real_labels)
-            d_loss_fake = criterion(discriminator(fake_imgs), fake_labels)
-            d_loss = d_loss_real + d_loss_fake
+                d_loss_real = criterion(discriminator(real_imgs), real_labels)
+                d_loss_fake = criterion(discriminator(fake_imgs), fake_labels)
+                d_loss = d_loss_real + d_loss_fake
 
-            d_optimizer.zero_grad()
-            d_loss.backward()
-            d_optimizer.step()
+                d_optimizer.zero_grad()
+                d_loss.backward()
+                d_optimizer.step()
 
             for param in discriminator.parameters():
                 param.requires_grad_(False)
